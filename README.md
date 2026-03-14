@@ -185,6 +185,40 @@ A strong workflow looks like this:
 - update the playbook only with repeatable wins
 - treat failures as useful knowledge, not wasted runs
 
+### Make summaries readable for non-experts
+
+Autoresearch results should not read like an internal lab notebook only experts can parse.
+
+Good summaries should say, in simple language:
+
+- what change was tested
+- whether the change was kept or discarded
+- the metric before
+- the metric after
+- the percentage gained or lost
+- whether validation still passed
+- what the next experiment is
+
+Example:
+
+```text
+Run 56 kept.
+Tested: a cache to avoid repeated readiness checks.
+Metric: search_p95_ms went from 2.21 ms to 1.95 ms.
+Change: about 11.8% faster than baseline.
+Validation: checks still pass.
+Next: test a smaller query-planning optimization.
+```
+
+At the end of a campaign, the final summary should also explain plainly:
+
+- baseline result
+- best result reached
+- total improvement percent
+- how many runs were tested
+- how many were kept
+- the simplest explanation of what improved overall
+
 ## What this plugin is not
 
 This plugin is intentionally lighter than `AutoContext`.
